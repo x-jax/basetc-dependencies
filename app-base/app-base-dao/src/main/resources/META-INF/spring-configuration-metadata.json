@@ -1,0 +1,133 @@
+{
+  "groups": [
+    {
+      "name": "basetc.dao",
+      "type": "com.basetc.base.dao.BaseDaoProperties",
+      "sourceType": "com.basetc.base.dao.BaseDaoProperties",
+      "description": "BaseTC DAO配置属性"
+    },
+    {
+      "name": "basetc.redis",
+      "type": "com.basetc.redis.properties.TcRedisProperties",
+      "sourceType": "com.basetc.redis.properties.TcRedisProperties",
+      "description": "BaseTC Redis配置属性"
+    },
+    {
+      "name": "basetc.web.cors",
+      "type": "com.basetc.base.web.WebCorsProperties",
+      "sourceType": "com.basetc.base.web.WebCorsProperties",
+      "description": "BaseTC Web CORS配置属性"
+    }
+  ],
+  "properties": [
+    {
+      "name": "basetc.dao.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "是否启用DAO自动配置"
+    },
+    {
+      "name": "basetc.dao.interceptor.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用拦截器自动配置"
+    },
+    {
+      "name": "basetc.dao.interceptor.optimistic-locker-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用乐观锁拦截器"
+    },
+    {
+      "name": "basetc.dao.interceptor.block-attack-inner-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用阻止全表更新删除拦截器"
+    },
+    {
+      "name": "basetc.dao.interceptor.pagination-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用分页拦截器"
+    },
+    {
+      "name": "basetc.dao.interceptor.max-page-limit",
+      "type": "java.lang.Long",
+      "defaultValue": 100,
+      "description": "分页最大限制"
+    },
+    {
+      "name": "basetc.redis.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用Redis自动配置"
+    },
+    {
+      "name": "basetc.redis.auto-type-accept",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": [],
+      "description": "FastJson自动类型接受列表"
+    },
+    {
+      "name": "basetc.redis.lock-key-prefix",
+      "type": "java.lang.String",
+      "defaultValue": "lock:",
+      "description": "分布式锁键前缀"
+    },
+    {
+      "name": "basetc.redis.lock-timeout",
+      "type": "java.lang.Long",
+      "defaultValue": 3000,
+      "description": "锁超时时间(ms)"
+    },
+    {
+      "name": "basetc.redis.lock-expire-time",
+      "type": "java.lang.Long",
+      "defaultValue": 30000,
+      "description": "锁过期时间(ms)"
+    },
+    {
+      "name": "basetc.redis.lock-sleep-time",
+      "type": "java.lang.Long",
+      "defaultValue": 10,
+      "description": "竞争锁休眠时间(ms)"
+    },
+    {
+      "name": "basetc.web.cors.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用CORS自动配置"
+    },
+    {
+      "name": "basetc.web.cors.allowed-origin-patterns",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的源模式"
+    },
+    {
+      "name": "basetc.web.cors.allowed-methods",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的方法"
+    },
+    {
+      "name": "basetc.web.cors.allowed-headers",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的头部"
+    },
+    {
+      "name": "basetc.web.cors.allow-credentials",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否允许携带凭证"
+    },
+    {
+      "name": "basetc.web.cors.max-age",
+      "type": "java.lang.Long",
+      "defaultValue": 3600,
+      "description": "预检请求有效期(秒)"
+    }
+  ],
+  "hints": []
+}

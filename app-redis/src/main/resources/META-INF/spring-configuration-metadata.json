@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "basetc.redis",
+      "type": "com.basetc.redis.properties.TcRedisProperties",
+      "sourceType": "com.basetc.redis.properties.TcRedisProperties",
+      "description": "BaseTC Redis配置属性"
+    }
+  ],
+  "properties": [
+    {
+      "name": "basetc.redis.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用Redis自动配置"
+    },
+    {
+      "name": "basetc.redis.auto-type-accept",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": [],
+      "description": "FastJson自动类型接受列表"
+    },
+    {
+      "name": "basetc.redis.lock-key-prefix",
+      "type": "java.lang.String",
+      "defaultValue": "lock:",
+      "description": "分布式锁键前缀"
+    },
+    {
+      "name": "basetc.redis.lock-timeout",
+      "type": "java.lang.Long",
+      "defaultValue": 3000,
+      "description": "锁超时时间(ms)"
+    },
+    {
+      "name": "basetc.redis.lock-expire-time",
+      "type": "java.lang.Long",
+      "defaultValue": 30000,
+      "description": "锁过期时间(ms)"
+    },
+    {
+      "name": "basetc.redis.lock-sleep-time",
+      "type": "java.lang.Long",
+      "defaultValue": 10,
+      "description": "竞争锁休眠时间(ms)"
+    }
+  ],
+  "hints": []
+}

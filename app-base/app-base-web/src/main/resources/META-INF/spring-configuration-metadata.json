@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "basetc.web.cors",
+      "type": "com.basetc.base.web.WebCorsProperties",
+      "sourceType": "com.basetc.base.web.WebCorsProperties",
+      "description": "BaseTC Web CORS配置属性"
+    }
+  ],
+  "properties": [
+    {
+      "name": "basetc.web.cors.auto-configure",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否启用CORS自动配置"
+    },
+    {
+      "name": "basetc.web.cors.allowed-origin-patterns",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的源模式"
+    },
+    {
+      "name": "basetc.web.cors.allowed-methods",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的方法"
+    },
+    {
+      "name": "basetc.web.cors.allowed-headers",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": ["*"],
+      "description": "允许的头部"
+    },
+    {
+      "name": "basetc.web.cors.allow-credentials",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否允许携带凭证"
+    },
+    {
+      "name": "basetc.web.cors.max-age",
+      "type": "java.lang.Long",
+      "defaultValue": 3600,
+      "description": "预检请求有效期(秒)"
+    }
+  ],
+  "hints": []
+}
