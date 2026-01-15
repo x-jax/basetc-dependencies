@@ -279,10 +279,45 @@ public class ProductService {
 
 ### TcRedisProperties
 
-Redis 模块的配置属性类：
+Redis 模块的配置属性类（前缀：`basetc.redis`）：
 
-- `lock-key-prefix`: 分布式锁键前缀，默认为 "lock:"
-- `lock-timeout`: 分布式锁超时时间，默认为 30000 毫秒
+| 配置项 | 默认值 | 说明 |
+|-------|--------|------|
+| `auto-configure` | `true` | 是否启用Redis自动配置 |
+| `auto-type-accept` | `[]` | FastJSON2反序列化时允许的类型列表，用于防止反序列化漏洞，支持包名通配符（如：`com.basetc.base.common.domain.*`） |
+| `lock-key-prefix` | `lock:` | 分布式锁键前缀，用于区分不同应用的锁 |
+| `lock-timeout` | `3000` | 获取锁超时时间（毫秒），超过此时间将抛出RedisTryLockTimeoutException异常 |
+| `lock-expire-time` | `30000` | 锁过期时间（毫秒），防止死锁 |
+| `lock-sleep-time` | `10` | 获取锁失败后的休眠时间（毫秒），避免忙等待消耗CPU资源 |
+
+### 配置示例
+
+```yaml
+basetc:
+  redis:
+    # 是否启用自动配置
+    auto-configure: true
+    
+    # FastJSON2 反序列化白名单（防止反序列化漏洞）
+    auto-type-accept:
+      - com.basetc.base.common.response.R
+      - com.basetc.base.common.domain.*
+      - com.example.model.*
+    
+    # 分布式锁配置
+    lock-key-prefix: "app:lock:"    # 锁键前缀
+    lock-timeout: 3000               # 获取锁超时时间 (毫秒)
+    lock-expire-time: 30000          # 锁过期时间 (毫秒)
+    lock-sleep-time: 10              # 锁竞争休眠时间 (毫秒)
+```
+
+### 安全性说明
+
+**重要**: `auto-type-accept` 配置用于防止 FastJSON2 反序列化漏洞。在生产环境中，建议明确配置允许反序列化的类型列表：
+
+- 开发环境: 可以使用通配符 `com.basetc.**` 方便调试
+- 生产环境: 明确列出所有需要反序列化的类路径，不要使用通配符
+- 不要配置: `java.**` 或 `org.springframework.**` 等过于宽泛的包路径
 
 ## 注意事项
 

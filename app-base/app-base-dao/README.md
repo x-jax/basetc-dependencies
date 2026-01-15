@@ -43,16 +43,25 @@ src/main/java/com/basetc/base/dao/
 
 **配置示例：**
 
-```properties
+```yaml
 # 启用自动配置
-tc.base.dao.auto-configure=true
-
-# 拦截器配置
-tc.base.dao.interceptor.auto-configure=true
-tc.base.dao.interceptor.optimistic-locker-enabled=true
-tc.base.dao.interceptor.block-attack-inner-enabled=true
-tc.base.dao.interceptor.pagination-enabled=true
-tc.base.dao.interceptor.max-page-limit=1000
+basetc:
+  dao:
+    # 是否启用自动配置
+    auto-configure: true
+    # 拦截器配置
+    interceptor:
+      auto-configure: true
+      optimistic-locker-enabled: true
+      block-attack-inner-enabled: true
+      pagination-enabled: true
+      max-page-limit: 1000
+    # DDL配置
+    ddl:
+      auto-commit: false
+      throw-exception: true
+      stop-on-error: true
+      remove-crs: false
 ```
 
 ### 2. 自动配置
@@ -331,14 +340,18 @@ public class ExtendedPageUtils extends PageUtils {
 
 ### 配置项
 
-| 配置项 | 默认值 | 说明 |
-|--------|--------|------|
-| tc.base.dao.auto-configure | false | 是否启用DAO自动配置 |
-| tc.base.dao.interceptor.auto-configure | true | 是否启用拦截器自动配置 |
-| tc.base.dao.interceptor.optimistic-locker-enabled | true | 是否启用乐观锁拦截器 |
-| tc.base.dao.interceptor.block-attack-inner-enabled | true | 是否启用阻止全表更新删除拦截器 |
-| tc.base.dao.interceptor.pagination-enabled | true | 是否启用分页拦截器 |
-| tc.base.dao.interceptor.max-page-limit | 100 | 分页最大限制 |
+| 配置项                                             | 默认值 | 说明 |
+|-------------------------------------------------|--------|------|
+| basetc.dao.auto-configure                       | false | 是否启用DAO自动配置 |
+| basetc.dao.interceptor.auto-configure          | true | 是否启用拦截器自动配置 |
+| basetc.dao.interceptor.optimistic-locker-enabled | true | 是否启用乐观锁拦截器 |
+| basetc.dao.interceptor.block-attack-inner-enabled | true | 是否启用阻止全表更新删除拦截器 |
+| basetc.dao.interceptor.pagination-enabled      | true | 是否启用分页拦截器 |
+| basetc.dao.interceptor.max-page-limit          | 100 | 分页最大限制 |
+| basetc.dao.ddl.auto-commit                     | false | DDL操作是否自动提交 |
+| basetc.dao.ddl.throw-exception                 | true | DDL操作失败是否抛出异常 |
+| basetc.dao.ddl.stop-on-error                   | true | DDL脚本执行错误时是否停止 |
+| basetc.dao.ddl.remove-crs                      | false | DDL脚本是否移除CR字符 |
 
 ## 最佳实践
 
@@ -351,7 +364,7 @@ public class ExtendedPageUtils extends PageUtils {
 
 ## 注意事项
 
-1. **线程安全**: `TcDaoMetaObjectHandler` 是单例的，自定义实现时需注意线程安全
+1. **线程安全**: `DaoMetaObjectHandler` 是单例的，自定义实现时需注意线程安全
 2. **性能考虑**: 分页最大限制应根据系统性能合理设置
 3. **兼容性**: 自定义元数据填充实现时，需确保字段类型兼容
 4. **配置验证**: 启用拦截器前应验证其对系统性能的影响

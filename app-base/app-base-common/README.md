@@ -241,6 +241,107 @@ SpringUtils.registerBean("myBean", new MyBean());
 SpringUtils.removeBean("myBean");
 ```
 
+#### DateAppendUtils - 日期时间计算工具类
+
+提供便捷的日期加减运算方法，封装了Java Calendar的日期时间操作。
+
+**主要方法：**
+
+- `addDays(Date date, int days)` - 给指定日期增加指定的天数
+- `addHours(Date date, int hours)` - 给指定日期增加指定的小时数
+- `addMinutes(Date date, int minutes)` - 给指定日期增加指定的分钟数
+- `addSeconds(Date date, int seconds)` - 给指定日期增加指定的秒数
+
+**使用示例：**
+
+```java
+// 获取当前时间
+Date now = new Date();
+
+// 加7天
+Date nextWeek = DateAppendUtils.addDays(now, 7);
+
+// 减3天
+Date threeDaysAgo = DateAppendUtils.addDays(now, -3);
+
+// 加2小时
+Date twoHoursLater = DateAppendUtils.addHours(now, 2);
+
+// 加30分钟
+Date thirtyMinutesLater = DateAppendUtils.addMinutes(now, 30);
+```
+
+#### IpUtils - IP地址工具类
+
+提供IP地址的获取、验证、转换等功能，支持多级反向代理环境。
+
+**主要方法：**
+
+- `getIpAddr(HttpServletRequest request)` - 获取客户端真实IP地址（支持多级反向代理）
+- `internalIp(String ip)` - 检查是否为内部IP地址
+- `isIp(String ip)` - 验证是否为有效IP地址
+- `isIpWildCard(String ip)` - 验证是否为通配符IP地址
+- `isIpSegment(String ipSeg)` - 验证是否为IP网段
+- `isMatchedIp(String filter, String ip)` - 检查IP是否在过滤规则中（支持单IP、通配符、网段）
+- `getHostIp()` - 获取本地主机IP地址
+
+**使用示例：**
+
+```java
+// 获取客户端IP地址
+String clientIp = IpUtils.getIpAddr(request);
+
+// 验证是否为有效IP
+boolean isValid = IpUtils.isIp(ip);
+
+// 验证是否为内网IP
+boolean isInternal = IpUtils.internalIp(ip);
+
+// IP白名单过滤（支持单IP、通配符、网段）
+String filter = "192.168.1.*;10.10.10.1-10.10.10.100;172.16.0.5";
+if (IpUtils.isMatchedIp(filter, clientIp)) {
+    // IP在白名单中，允许访问
+}
+```
+
+#### RequestUtils - HTTP请求工具类
+
+提供获取当前请求上下文相关信息的便捷方法，依赖于Spring的RequestContextHolder。
+
+**主要方法：**
+
+- `getParameter(String name)` - 获取String类型的请求参数
+- `getParameter(String name, String defaultValue)` - 获取String类型的请求参数，支持默认值
+- `getParameterToInt(String name)` - 获取Integer类型的请求参数
+- `getParameterToInt(String name, Integer defaultValue)` - 获取Integer类型的请求参数，支持默认值
+- `getParameterToBool(String name)` - 获取Boolean类型的请求参数
+- `getParameterToBool(String name, Boolean defaultValue)` - 获取Boolean类型的请求参数，支持默认值
+- `getParams(ServletRequest request)` - 获取请求中的所有参数
+- `getParamMap(ServletRequest request)` - 获取请求中的所有参数，并将多值参数合并为字符串
+- `getRequest()` - 获取当前线程的HttpServletRequest对象
+- `getResponse()` - 获取当前线程的HttpServletResponse对象
+- `getSession()` - 获取当前线程的HttpSession对象
+- `urlEncode(String str)` - 对URL进行UTF-8编码
+- `urlDecode(String str)` - 对URL进行UTF-8解码
+- `getHeaders(HttpServletRequest request)` - 获取请求中的所有请求头
+- `getHeader(String name)` - 获取指定名称的请求头值
+
+**使用示例：**
+
+```java
+// 获取请求参数
+String username = RequestUtils.getParameter("username");
+Integer age = RequestUtils.getParameterToInt("age", 0);
+Boolean remember = RequestUtils.getParameterToBool("remember", false);
+
+// 获取Token
+String token = RequestUtils.getHeader("Authorization");
+
+// URL编码/解码
+String encoded = RequestUtils.urlEncode("测试中文");
+String decoded = RequestUtils.urlDecode("%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%96%87");
+```
+
 #### BasetcApplication - 启动类
 
 基础启动类，继承自BasetcProfile，提供应用启动功能。
